@@ -25,6 +25,7 @@ const detours = switch (builtin.cpu.arch) {
 
         pub extern "detours.x86" fn DetourRestoreAfterWith() callconv(.Stdcall) c_int;
     },
+    else => @compileError("Unsupported CPU architecture!"),
 };
 
 /// Updates the detours in the current thread.
