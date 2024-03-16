@@ -10,6 +10,8 @@ const detours = switch (builtin.cpu.arch) {
         pub extern "detours.x64" fn DetourTransactionBegin() c_long;
         pub extern "detours.x64" fn DetourTransactionAbort() c_long;
         pub extern "detours.x64" fn DetourTransactionCommit() c_long;
+
+        pub extern "detours.x64" fn DetourRestoreAfterWith() c_int;
     },
     .x86 => struct {
         pub extern "detours.x86" fn DetourUpdateThread(handle: ?*const anyopaque) callconv(.Stdcall) c_long;
@@ -20,6 +22,8 @@ const detours = switch (builtin.cpu.arch) {
         pub extern "detours.x86" fn DetourTransactionBegin() callconv(.Stdcall) c_long;
         pub extern "detours.x86" fn DetourTransactionAbort() callconv(.Stdcall) c_long;
         pub extern "detours.x86" fn DetourTransactionCommit() callconv(.Stdcall) c_long;
+
+        pub extern "detours.x86" fn DetourRestoreAfterWith() callconv(.Stdcall) c_int;
     },
 };
 
@@ -53,4 +57,9 @@ pub fn detourTransactionAbort() c_long {
 /// Commits detours transaction.
 pub fn detourTransactionCommit() c_long {
     return detours.DetourTransactionCommit();
+}
+
+/// Restores the contents in memory import table after a process was started.
+pub fn detourRestoreAfterWith() c_int {
+    return detours.DetourRestoreAfterWith();
 }
