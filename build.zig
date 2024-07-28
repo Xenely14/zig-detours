@@ -5,7 +5,7 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const detours = b.addModule("detours", .{
-        .root_source_file = .{ .path = "src/detours.zig" },
+        .root_source_file = .{ .cwd_relative = "src/detours.zig" },
         .target = target,
         .optimize = optimize,
         .link_libc = true,
