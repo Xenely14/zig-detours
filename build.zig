@@ -10,5 +10,5 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true,
     });
-    detours.addLibraryPath(.{ .cwd_relative = "libs" });
+    detours.addLibraryPath(b.path("libs"));
 }
