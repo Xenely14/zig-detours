@@ -1,5 +1,6 @@
 .{
-    .name = "zig-detours",
+    .name = .zig_detours,
+	.fingerprint = 0x20145f2a32259869,
     .version = "1.0.0",
     .dependencies = .{},
     .paths = .{
